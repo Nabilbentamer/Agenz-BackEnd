@@ -1,4 +1,4 @@
-# Blood_Inventory
+# Agenz Exo
 ma proposition pour l'exerice du Backend En utilisant Nodejs, Express js.
 
 You can access the api under localhost:3000 
