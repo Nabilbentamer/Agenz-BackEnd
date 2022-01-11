@@ -175,9 +175,9 @@ router.get("/getAllMovies", async (req, res) => {
   });
 });
 
-router.get("/getMovieByRuntime/:runtime/:operator", async (req, res) => {
-  const runtime = req.params.runtime;
-  const operator = req.params.operator;
+router.get("/getMovieByRuntime", async (req, res) => {
+  const runtime = req.body.runtime;
+  const operator = req.body.operator;
 
   const result = movies.filter(function (movie) {
     if (operator === "gte") {
@@ -197,4 +197,18 @@ router.get("/getMovieByRuntime/:runtime/:operator", async (req, res) => {
   }
 });
 
+router.post("/between", async (req, res) => {
+  const { startyear, endyear } = req.body;
+  const result = movies.filter(function (movie) {
+    if (movie.year >= startyear && movie.year <= endyear) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  if (result) {
+    res.status(200).send({ success: true, date: result });
+  }
+});
 module.exports = router;
